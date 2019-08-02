@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F7953C122F4931300EAA736 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7953C022F4931300EAA736 /* test.swift */; };
 		2F95412E22F476AD0025017C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F95412D22F476AD0025017C /* AppDelegate.swift */; };
 		2F95413022F476AD0025017C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F95412F22F476AD0025017C /* ViewController.swift */; };
 		2F95413322F476AD0025017C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F95413122F476AD0025017C /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F7953C022F4931300EAA736 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		2F95412A22F476AD0025017C /* Werkstuk2_2dezit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Werkstuk2_2dezit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F95412D22F476AD0025017C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F95412F22F476AD0025017C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 				2F95412D22F476AD0025017C /* AppDelegate.swift */,
 				2F95412F22F476AD0025017C /* ViewController.swift */,
 				2F95413122F476AD0025017C /* Main.storyboard */,
+				2F7953C022F4931300EAA736 /* test.swift */,
 				2F95414222F479230025017C /* testViewController.swift */,
 				2F95413722F476AE0025017C /* Assets.xcassets */,
 				2F95413922F476AE0025017C /* LaunchScreen.storyboard */,
@@ -144,6 +147,7 @@
 				2F95413622F476AD0025017C /* Werkstuk2_2dezit.xcdatamodeld in Sources */,
 				2F95413022F476AD0025017C /* ViewController.swift in Sources */,
 				2F95414322F479230025017C /* testViewController.swift in Sources */,
+				2F7953C122F4931300EAA736 /* test.swift in Sources */,
 				2F95412E22F476AD0025017C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

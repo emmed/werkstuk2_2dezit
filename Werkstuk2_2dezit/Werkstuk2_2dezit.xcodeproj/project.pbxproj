@@ -17,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F7953E422FC570300EAA736 /* Brussel,Belgium.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = "Brussel,Belgium.gpx"; path = "../../../Downloads/Brussel,Belgium.gpx"; sourceTree = "<group>"; };
 		2F95412A22F476AD0025017C /* Werkstuk2_2dezit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Werkstuk2_2dezit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F95412D22F476AD0025017C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F95412F22F476AD0025017C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -42,6 +43,7 @@
 		2F95412122F476AD0025017C = {
 			isa = PBXGroup;
 			children = (
+				2F7953E422FC570300EAA736 /* Brussel,Belgium.gpx */,
 				2F95412C22F476AD0025017C /* Werkstuk2_2dezit */,
 				2F95412B22F476AD0025017C /* Products */,
 			);

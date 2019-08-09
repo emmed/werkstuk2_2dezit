@@ -37,7 +37,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Brussel LIfe Traffic" id="QQM-W8-PHZ">
-                                        <barButtonItem key="rightBarButtonItem" title="Vernieuw" id="ytT-n3-kwU"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Vernieuw" id="ytT-n3-kwU">
+                                            <connections>
+                                                <action selector="VernieuwData:" destination="BYZ-38-t0r" id="c4i-S9-at1"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>

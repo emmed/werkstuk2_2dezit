@@ -121,6 +121,34 @@ class ViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDeleg
         }
     }
     
+    func deleteEntityItems(){
+        
+        
+        let aanvraagRecords = NSFetchRequest<NSFetchRequestResult>(entityName: "Records")
+        let aanvraagCordinaten = NSFetchRequest<NSFetchRequestResult>(entityName: "Coordinaat")
+        
+        
+        do {
+            let itemsRecords = try self.managedContext!.fetch(aanvraagRecords)
+            for item in itemsRecords as! [NSManagedObject] {
+                self.managedContext!.delete(item)
+            }
+            
+            
+            let itemsCoordinates = try self.managedContext!.fetch(aanvraagCordinaten)
+            for item in itemsCoordinates as! [NSManagedObject] {
+                self.managedContext!.delete(item)
+                
+            }
+            
+            try self.managedContext!.save()
+            
+        } catch {
+            print("failed")
+        }
+        
+    }
+    
     
     func dataOphalen() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate
@@ -128,7 +156,86 @@ class ViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDeleg
         {
             return
         }
-         managedContext = appDelegate.persistentContainer.viewContext
+        // !!!!!
+        managedContext = appDelegate.persistentContainer.viewContext
+        deleteEntityItems()
+        let url = URL(string: "https://opendata.brussels.be/api/records/1.0/search/?dataset=traffic-volume&facet=level_of_service")
+        
+        let urlRequest = URLRequest(url: url!)
+        
+        
+        let session = URLSession(configuration: URLSessionConfiguration.default)
+        
+        let task = session.dataTask(with: urlRequest) {
+            (data, response, error) in // nakijken voor eninge problemen/erorros
+            
+            guard error == nil else {
+                print("error calling GET")
+                print(error!)
+                return
+                
+            }
+            
+            guard let responseData = data else { // hebben we data binnen gekregen? if true? else { een error uit printen}...
+                print("Error: geen data ontvangen")
+                return
+            }
+            
+            do {
+                let json = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: AnyObject]
+                let records = json!["records"] as? [Any]
+                for record in records! {
+                    let recor = record as! [String:AnyObject]
+                    let id = recor["recordid"] as! String
+                    let fields = recor["fields"] as! [String:AnyObject]
+                    let geo_shape = fields["geo_shape"] as! [String:AnyObject]
+                    let serviceLevel = fields["level_of_service"] as! String
+                    let GegevensRecords = NSEntityDescription.insertNewObject(forEntityName: "Records", into: self.managedContext!) as! Records
+                    let timestamp = DateFormatter.localizedString(from: Date(), dateStyle: .long, timeStyle: .short)
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    GegevensRecords.recordid = id
+                    GegevensRecords.timestamp = timestamp
+                    GegevensRecords.level_of_service = serviceLevel
+                    
+                    let coordinaten = geo_shape["coordinates"] as! [Any]
+                    
+                    for coordinaat in coordinaten {
+                        let co = NSEntityDescription.insertNewObject(forEntityName: "Coordinaat", into: self.managedContext!) as! Coordinaat
+                        
+                        co.recordid = id
+                        let nummer = coordinaat as! [Any]
+                        let long = nummer[0] as! Double
+                        let lat = nummer[1] as! Double
+                        co.latitude = lat
+                        co.longitude = long
+                        // !!!!!!!!!
+                    }
+                }
+                DispatchQueue.main.async {
+                    
+                    do {
+                        try self.managedContext!.save()
+                    } catch {
+                        fatalError("Kan de data/Context niet opslaan: \(error)")
+                    }
+                    
+                    self.coreDataOphalen()
+                    
+                }
+            } catch {
+                print("error kan niet lezen/ophalen")
+            }
+        }
+        task.resume()
+        
         
     }
     

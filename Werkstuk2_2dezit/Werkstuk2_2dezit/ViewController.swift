@@ -287,6 +287,15 @@ class ViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDeleg
     
     
     
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if overlay is MKPolyline {
+            let lineView = MKPolylineRenderer(overlay: overlay)
+            lineView.strokeColor = self.color
+            lineView.lineWidth = CGFloat(3)
+            return lineView
+        }
+        return MKOverlayRenderer()
+    }
     
     
 }
